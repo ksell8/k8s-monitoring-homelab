@@ -12,7 +12,7 @@ Not a lot.  It depends on your machine.  This is meant to allow you to quickly b
 
 Each experiment will have a CPU and RAM estimate.  Plan your experimental kustomizations accordingly.  
 
-The control plane itself will take 2-4GB RAM worst case and 1-2 cores.  And it grows as you add resources.
+The control plane itself will take 2-4GB RAM and 1-2 cores in the worst case.  And it grows as you add resources.
 
 Required:
 
@@ -23,4 +23,5 @@ Required:
 Experimental:
 
 - [Metrics Server](./docs/metrics-server.md)
+- [Kube Prometheus Stack](./docs/kube-prometheus-stack.md)
 

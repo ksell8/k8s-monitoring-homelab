@@ -1,0 +1,68 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: kube-prometheus-stack
+  namespace: monitoring
+spec:
+  values:
+    prometheus:
+      prometheusSpec:
+        resources:
+          requests:
+            memory: 400Mi
+            cpu: 100m
+          limits:
+            memory: 1Gi
+        storageSpec:
+          volumeClaimTemplate:
+            spec:
+              accessModes: ["ReadWriteOnce"]
+              resources:
+                requests:
+                  storage: 5Gi
+        retention: 7d
+        retentionSize: "4GB"
+
+    grafana:
+      persistence:
+        enabled: true
+        size: 1Gi
+      resources:
+        requests:
+          memory: 128Mi
+          cpu: 50m
+        limits:
+          memory: 512Mi
+      service:
+        type: NodePort
+        nodePort: 30080
+
+    alertmanager:
+      enabled: false
+
+    kubelet:
+      serviceMonitor:
+        https: true
+        insecureSkipVerify: true
+
+    # Control plane components not exposed in kind (same as managed k8s)
+    kubeEtcd:
+      enabled: false
+    kubeControllerManager:
+      enabled: false
+    kubeScheduler:
+      enabled: false
+    kubeProxy:
+      enabled: false
+
+    prometheus-node-exporter:
+      resources:
+        requests:
+          memory: 32Mi
+          cpu: 10m
+
+    prometheusOperator:
+      resources:
+        requests:
+          memory: 128Mi
+          cpu: 50m

@@ -20,4 +20,4 @@ How do I use this?
 
 1) k9s
 2) :
-3) There's all these yamls in this repo, they go `kind:` in 'em.  Type what's behind the colon in the search bar > click enter.  Ta-dah there be your resources!
+3) There's all these yamls in this repo, they got `kind:` in 'em.  Type what's behind the colon in the search bar > click enter.  Ta-dah there be your resources!
